@@ -2,17 +2,15 @@
 // @name Reddit-Style Comments for Hacker News
 // @description This extension simply adds Reddit style comment toggling on Hacker News discussion articles.
 // @namespace https://github.com/andrewheins/HN-Comment-Hider
-// @include http://news.ycombinator.com/item*
-// @include http://hackerne.ws/item*
 // @include https://news.ycombinator.com/item*
-// @include https://hackerne.ws/item*
+// @include https://news.ycombinator.com/threads*
 // @require https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js
 // ==/UserScript==
 
 
 function runthis() {
 
-	var hnUrl = /^https?:\/\/(news\.ycombinator\.com|hackerne\.ws)\/item/;
+	var hnUrl = /^https?:\/\/(news\.ycombinator\.com|hackerne\.ws)\/(item|threads)/;
 	if ( !hnUrl.test(window.location.href) ) {
 		return;
 	}
@@ -72,7 +70,7 @@ function runthis() {
 
 	
 
-	var toggleBtn = $('<a href="#" class="commentToggle" style="padding-right: 1em; font-family: monospace;">[-]</a>');
+	var toggleBtn = $('<a href="#" class="commentToggle" style="padding-right: 0.5em; font-family: monospace;">[-]</a>');
 	$("span.comhead").not('td.title span.comhead').prepend(toggleBtn);
 
 	$(".commentToggle").click(function(e) {
@@ -84,4 +82,5 @@ function runthis() {
 }
 
 runthis();
+
 
